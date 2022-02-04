@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import Header from './components/Header';
-import General from './components/General';
-import Footer from './components/Footer';
+import Header from './Header';
+import General from './General';
+import Footer from './Footer';
 
 export default {
   name: 'App',
