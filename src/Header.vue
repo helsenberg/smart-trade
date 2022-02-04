@@ -26,10 +26,6 @@ export default ({
   box-sizing: border-box;
 }
 
-.runningLine {
-  
-}
-
 .b-marquee {
   font-family: 'Segoe UI', sans-serif;
   white-space: nowrap;
@@ -69,8 +65,6 @@ export default ({
 
 
 /* text right to left*/
-
-.b-marquee--rtl {}
 
 .b-marquee--rtl .b-marquee__text {
   -webkit-animation: animMarqueeRtl 10s linear infinite;
