@@ -1,95 +1,76 @@
 <template>
-  <div>
-    <div class="b-marquee">
-  <div class="b-marquee__text running">I'm just testing a running line</div>
-  </div>
-  <div class="b-marquee b-marquee--rtl">
-    <div class="b-marquee__text">Working in progress</div>
-  </div>
-  </div>
+ <div class="head d-flex justify-space-between align-center">
+   <div>
+     <div class="d-flex">
+      <div>Время на сервере:</div>
+
+      <div id="clock"></div>
+    </div>
+      <div> 
+          {{dayOfTheWeek}} {{date.day}}.{{date.month}}.{{date.year}} г.
+      </div> 
+    </div>
+
+   <div>Техподдержка по РФ</div>
+
+   <div>Иконки</div>
+ </div>
 </template>
 
 <script>
 
+const days = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+
+let today = new Date()
+
+window.onload = function() {
+  window.setInterval(function() {
+    var date = new Date();
+
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var seconds = date.getSeconds()
+
+    if (hours < 10) hours = "0" + hours;
+    if (minutes < 10) minutes = "0" + minutes;
+    if (seconds < 10) seconds = "0" + seconds;
+    var clock = hours + ":" + minutes + ':' + seconds;
+    document.getElementById("clock").innerHTML = clock; 
+  })
+}
+
 export default ({
-  data() {
-    
+  data: () => ({
+    dayOfTheWeek: days[today.getDay()],
+    date: { 
+      year: '',
+      month: '',
+      day: ''
+    },
+  }),
+  methods: {
+    addLeadingZero(d) {
+      return (d < 10) ? '0' + d : d;
+    },
+    getUserTime() {
+      let today = new Date()
+        this.date.year = today.getFullYear();
+        this.date.month = this.addLeadingZero(today.getMonth()+1);
+        this.date.day = this.addLeadingZero(today.getDate());
+    },
   },
+  mounted() {
+    this.getUserTime()
+  }
 })
 </script>
 
 <style scoped>
-* {
-  padding: 0;
-  margin: 0;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-.b-marquee {
-  font-family: 'Segoe UI', sans-serif;
-  white-space: nowrap;
-  overflow: hidden;
-  color: rgb(0, 0, 0);
-  padding: 10px;
-  position: relative;
-  margin-bottom: 10px;
-}
-
-.b-marquee__text {
-  -webkit-animation: animMarquee 15s linear infinite;
-  animation: animMarquee 15s linear infinite;
-}
-
-@-webkit-keyframes animMarquee {
-  0% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
+  .head {
+    color: white;
+    padding: 13px 58px;
+    background-color: #797979;
+    max-height: 64px;
+    width: 100%;
   }
-  100% {
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%);
-  }
-}
-
-@keyframes animMarquee {
-  0% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-  }
-  100% {
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%);
-  }
-}
-
-
-/* text right to left*/
-
-.b-marquee--rtl .b-marquee__text {
-  -webkit-animation: animMarqueeRtl 10s linear infinite;
-  animation: animMarqueeRtl 10s linear infinite;
-}
-
-@-webkit-keyframes animMarqueeRtl {
-  0% {
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%);
-  }
-  100% {
-    -webkit-transform: translateX(0%);
-    transform: translateX(0%);
-  }
-}
-
-@keyframes animMarqueeRtl {
-  0% {
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%);
-  }
-  100% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-  }
-}
 </style>
