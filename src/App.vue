@@ -13,25 +13,29 @@
         <v-divider></v-divider>
 
         <v-card>
-          <v-list class="navigation__content" color="#C4C4C4">
-            <v-list-item
-              class="navigation__content-item"
-              v-for="item in items"
-              :key="item.title"
-              link
-            >
-              <v-list-item-icon> <v-icon> {{item.icon}} </v-icon> </v-list-item-icon>
-              <v-list-item-title> {{item.title}} </v-list-item-title>
-            </v-list-item>
+          <v-list class="navigation__content d-flex flex-column" color="#C4C4C4">
+            <div class="d-flex flex-column">
+              <v-list-item
+                class="navigation__content-item"
+                v-for="item in items"
+                :key="item.title"
+                link
+              >
+                <v-list-item-icon> <v-icon> {{item.icon}} </v-icon> </v-list-item-icon>
+                <v-list-item-title> {{item.title}} </v-list-item-title>
+              </v-list-item>
+            </div>
 
-            <v-list-item link>
+            <div class="d-flex flex-column helpBlock">
+            <v-list-item link class="d-flex">
               <v-list-item-icon> <v-icon> mdi-folder </v-icon> </v-list-item-icon>
               <v-list-item-title>Настройки</v-list-item-title>
             </v-list-item>
-            <v-list-item link>
+            <v-list-item link class="d-flex">
               <v-list-item-icon> <v-icon> mdi-folder </v-icon> </v-list-item-icon>
               <v-list-item-title>Помощь</v-list-item-title>
             </v-list-item>
+            </div>
           </v-list>
         </v-card>
       </div>
@@ -127,8 +131,6 @@ export default {
 }
 .navigation__content {
   padding: 16px 8px 0px 8px;
-  display: flex;
-  flex-direction: column;
 }
 .navigation__pin-btn {
   cursor: pointer;
@@ -136,7 +138,7 @@ export default {
 .navigation__pin-btn:hover {
   color: white;
 }
-.asdf {
-  background-color: #000;
+.helpBlock {
+  margin-top: calc(100vh - 585px);
 }
 </style>
