@@ -28,11 +28,11 @@
 
             <div class="d-flex flex-column helpBlock">
             <v-list-item link class="d-flex">
-              <v-list-item-icon> <v-icon> mdi-folder </v-icon> </v-list-item-icon>
+              <v-list-item-icon> <v-icon> mdi-cog-outline </v-icon> </v-list-item-icon>
               <v-list-item-title>Настройки</v-list-item-title>
             </v-list-item>
             <v-list-item link class="d-flex">
-              <v-list-item-icon> <v-icon> mdi-folder </v-icon> </v-list-item-icon>
+              <v-list-item-icon> <v-icon> mdi-help </v-icon> </v-list-item-icon>
               <v-list-item-title>Помощь</v-list-item-title>
             </v-list-item>
             </div>
