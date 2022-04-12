@@ -69,7 +69,7 @@ export default ({
   .head {
     color: white;
     padding: 13px 58px;
-    background-color: #797979;
+    background-color: #438424;
     max-height: 64px;
     width: 100%;
   }

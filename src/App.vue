@@ -7,13 +7,13 @@
           <div
             class="navigation__pin-btn"
             @click="pinNavigation"
-          > <v-icon> mdi-menu </v-icon> </div>
+          > <v-icon dark> mdi-menu </v-icon> </div>
         </div>
 
         <v-divider></v-divider>
-
-        <v-card>
-          <v-list class="navigation__content d-flex flex-column" color="#C4C4C4">
+        
+        <v-card class="content__list">
+          <v-list class="navigation__content d-flex flex-column" color="#3B3B3B" dark subheader max-height="100%" >
             <div class="d-flex flex-column">
               <v-list-item
                 class="navigation__content-item"
@@ -26,12 +26,8 @@
               </v-list-item>
             </div>
 
-            <div class="d-flex flex-column helpBlock">
-            <v-list-item link class="d-flex">
-              <v-list-item-icon> <v-icon> mdi-cog-outline </v-icon> </v-list-item-icon>
-              <v-list-item-title>Настройки</v-list-item-title>
-            </v-list-item>
-            <v-list-item link class="d-flex">
+            <div class="helpBlock">
+            <v-list-item link class="d-flex" >
               <v-list-item-icon> <v-icon> mdi-help </v-icon> </v-list-item-icon>
               <v-list-item-title>Помощь</v-list-item-title>
             </v-list-item>
@@ -39,12 +35,19 @@
           </v-list>
         </v-card>
       </div>
-      <div class="app__content container">
+
+      <div class="app__content container d-flex flex-column justify-space-between">
+
         <Header />
+
           <v-main>
-            <General />
+
+            <General class="main__container" />
+            
           </v-main>
+
         <Footer />
+
       </div>
     </div>
     
@@ -69,13 +72,13 @@ export default {
 
   data: () => ({
     items: [
-      {title: 'Главная', icon: 'mdi-folder'},
-      {title: 'Торги', icon: 'mdi-folder'},
-      {title: 'Пользователи', icon: 'mdi-folder'},
-      {title: 'Обращения', icon: 'mdi-folder'},
-      {title: 'Статистика', icon: 'mdi-folder'},
-      {title: 'Документы', icon: 'mdi-folder'},
-      {title: 'Новости', icon: 'mdi-folder'},
+      {title: 'Главная', icon: 'mdi-home'},
+      {title: 'Торги', icon: 'mdi-gavel'},
+      {title: 'Пользователи', icon: 'mdi-account-group'},
+      {title: 'Обращения', icon: 'mdi-email'},
+      {title: 'Статистика', icon: 'mdi-chart-areaspline'},
+      {title: 'Документы', icon: 'mdi-file-document'},
+      {title: 'Новости', icon: 'mdi-bullhorn'},
     ]
   }),
   methods: {
@@ -99,6 +102,12 @@ export default {
   margin: 0;
   transition: .35s all;
 }
+.main__container {
+  margin-left: 60px;
+  margin-top: 20px;
+  margin-right: 60px;
+  margin-bottom: 20px;
+}
 .app {
   height: 100%;
   max-width: 100%;
@@ -109,8 +118,10 @@ export default {
   grid-template-columns: 252px calc(100vw - 252px);
 }
 .app__navigation {
+  position: absolute;
+  z-index: 1;
   height: 100%;
-  background-color: #C4C4C4;
+  background-color: #3B3B3B;
 }
 .app__content {
   width: 100%;
@@ -130,15 +141,21 @@ export default {
   align-items: center;
 }
 .navigation__content {
-  padding: 16px 8px 0px 8px;
+  padding: 0px 8px 0px 8px;
+}
+/* .navigation__content-item {
+
+} */
+.content__list {
+  color: white;
 }
 .navigation__pin-btn {
   cursor: pointer;
 }
 .navigation__pin-btn:hover {
-  color: white;
+  color: #3B3B3B;
 }
 .helpBlock {
-  margin-top: calc(100vh - 585px);
+  /* margin-top: calc(100vh - 52.5vh); */
 }
 </style>

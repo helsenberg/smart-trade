@@ -1,34 +1,25 @@
 <template>
   <div>
-   
+    <Auctions />
   </div>
 </template>
 
 <script>
+import Auctions from "./components/Auctions.vue"
+
 export default ({
   data: () => ({
-    mini: true,
-    items: [
-      {title: 'Главная', icon: 'mdi-folder'},
-      {title: 'Торги', icon: 'mdi-folder'},
-      {title: 'что-то', icon: 'mdi-folder'},
-      {title: 'что-то', icon: 'mdi-folder'},
-    ]
+
   }),
   methods: {
 
   },
   components: {
-    
+    Auctions
   }
 })
 </script>
 
 <style scoped>
-.menu {
 
-};
-/* .content {
-  
-} */
 </style>
