@@ -38,7 +38,7 @@
       {{selectedCategory}}
     </div> -->
 
-    <div id="content-section" class="mt-5"
+    <div class="content-section mt-5"
       v-if="selectedCategory === ''"
     >
       <div class="content-section__card card text-center d-flex flex-column justify-space-between align-center"
@@ -129,22 +129,21 @@ input:focus {
 /* .v-input__slot div::before {
   border-color: red !important;
 } */
-#content-section {
-  /* display: grid;
+.content-section {
+  display: grid;
   grid-template-rows: auto;
-  grid-template-columns: repeat(4, 362px);
-  column-gap: 64px;
-  row-gap: 30px; */
-
-  display: flex;
-  flex-wrap: wrap;
+  grid-template-columns: repeat(4, minmax(10px, 379px));
   column-gap: 64px;
   row-gap: 30px;
+
+  /* display: flex;
+  flex-wrap: wrap;
+  column-gap: 64px;
+  row-gap: 30px; */
 }
 .content-section__card {
   padding: 10px;
   height: 184px;
-  width: 362px;
 }
 .content-section__card:hover {
   cursor: pointer;
