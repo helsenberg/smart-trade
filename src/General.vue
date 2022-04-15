@@ -1,10 +1,16 @@
 <template>
   <div>
-    <Auctions />
+    <MainPage 
+      v-if="selectedMenu === 'Главная'"
+    />
+    <Auctions 
+      v-if="selectedMenu === 'Торги'"
+    />
   </div>
 </template>
 
 <script>
+import MainPage from "./components/MainPage.vue"
 import Auctions from "./components/Auctions.vue"
 
 export default ({
@@ -15,8 +21,12 @@ export default ({
 
   },
   components: {
-    Auctions
-  }
+    Auctions,
+    MainPage
+  },
+  props: [
+    'selectedMenu'
+  ],
 })
 </script>
 

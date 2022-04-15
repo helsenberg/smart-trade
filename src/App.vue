@@ -10,43 +10,70 @@
           > <v-icon dark> mdi-menu </v-icon> </div>
         </div>
 
-        <v-divider></v-divider>
         
-        <v-card class="content__list">
-          <v-list class="navigation__content d-flex flex-column" color="#3B3B3B" dark subheader max-height="100%" >
-            <div class="d-flex flex-column">
+
+        <v-divider></v-divider>
+
+        <!-- <nav class="menu">
+          <ul class="menu__list"
+            v-for="item in items"
+            :key="item.title"
+          >
+            <li>
+              <div class="menu__content card">
+                <div class="menu-item__icon">
+                  <v-icon> {{item.icon}} </v-icon>
+                </div>
+                <div class="menu-item__title">
+                  {{item.title}}
+                </div>
+              </div>
+            </li>
+          </ul>
+        </nav> -->
+        
+        <div class="navigation__content">
+          <div class="content__list mt-2">
+            <v-list color="#3B3B3B" dark subheader max-height="100%">
               <v-list-item
                 class="navigation__content-item"
+                :class="[selectedMenu === item.title ? 'navigation__content-item--active' : '']"
                 v-for="item in items"
                 :key="item.title"
                 link
+                @click = "selectMenu(item.title)"
               >
                 <v-list-item-icon> <v-icon> {{item.icon}} </v-icon> </v-list-item-icon>
                 <v-list-item-title> {{item.title}} </v-list-item-title>
               </v-list-item>
-            </div>
-
-            <div class="helpBlock">
-            <v-list-item link class="d-flex" >
-              <v-list-item-icon> <v-icon> mdi-help </v-icon> </v-list-item-icon>
-              <v-list-item-title>Помощь</v-list-item-title>
-            </v-list-item>
-            </div>
-          </v-list>
-        </v-card>
+            </v-list>
+          </div>
+          <div>
+            <v-list color="#3B3B3B" dark>
+              <v-list-item link>
+                <v-list-item-icon> <v-icon> mdi-help </v-icon> </v-list-item-icon>
+                <v-list-item-title>Помощь</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </div>
+        </div>
       </div>
 
       <div class="app__content container d-flex flex-column justify-space-between">
 
         <Header />
 
-          <v-main>
+        <div class="main__block">
+            <v-main>
 
-            <General class="main__container" />
-            
-          </v-main>
+              <General class="main__container" 
+                :selectedMenu="selectedMenu"
+              />
+              
+            </v-main>
 
-        <Footer />
+          <Footer />
+        </div>
 
       </div>
     </div>
@@ -71,6 +98,7 @@ export default {
   },
 
   data: () => ({
+    selectedMenu: 'Главная',
     items: [
       {title: 'Главная', icon: 'mdi-home'},
       {title: 'Торги', icon: 'mdi-gavel'},
@@ -92,17 +120,52 @@ export default {
         document.querySelector('.app').classList.remove('app--navigation-pinned')
         document.querySelector('.navigation').classList.remove('navigation--pinned')
       }
+    },
+    selectMenu(value) {
+      this.selectedMenu = value
     }
+    
+  },
+  mounted() {
+    this.getCategoryList()
   }
 };
 </script>
 
 <style scoped>
+/* new list styles */
+.menu {
+  text-decoration: none;
+}
+ul {
+  height: 100%;
+}
+.menu li {
+  list-style: none;
+}
+.menu__content {
+  /* display: flex;
+  column-gap: 30px;
+  row-gap: 50px; */
+  display: grid;
+  grid-template-columns: auto;
+  row-gap: 10px;
+}
+
+
 * {
   margin: 0;
   transition: .35s all;
 }
+.main__block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+  height: calc(100vh - 64px);
+}
 .main__container {
+
   margin-left: 60px;
   margin-top: 20px;
   margin-right: 60px;
@@ -118,6 +181,7 @@ export default {
   grid-template-columns: 252px calc(100vw - 252px);
 }
 .app__navigation {
+
   position: absolute;
   z-index: 1;
   height: 100%;
@@ -141,11 +205,16 @@ export default {
   align-items: center;
 }
 .navigation__content {
+  height: calc(100vh - 64px);
   padding: 0px 8px 0px 8px;
-}
-/* .navigation__content-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-} */
+}
+.navigation__content-item--active {
+  background-color: rgba(182, 182, 182, 0.213);
+}
 .content__list {
   color: white;
 }

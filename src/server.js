@@ -1,0 +1,1 @@
+export const server = 'http://sti-agrotrade.ru:1337/api/'
