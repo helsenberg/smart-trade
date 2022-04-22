@@ -310,10 +310,14 @@ input:focus {
   grid-template-columns: repeat(4, 1fr);
   column-gap: 5%;
 }
+.sub-categories-content__icon {
+  width: 64px;
+  height: 64px;
+}
 .sub-categories-content {
   padding: 24px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 2fr 1fr;
   row-gap: 15px;
   align-self: start;
 }
@@ -366,10 +370,8 @@ input:focus {
 }
 .lot-title {
   color: #194E00;
-  font-weight: 700;
-  font-size: 18px;
 }
-.lot-cost {
+.lot-cost, .lot-title {
   font-weight: 700;
   font-size: 24px;
 }
