@@ -3,16 +3,16 @@
     <div class="app app--navigation-unpinned">
       <div class="app__navigation navigation">
         <div class="navigation__header">
-          <span><img height=39 width=165 :src="require('./assets/logo.svg')"></span>
+          <span><img height=39 width=165 :src="require('./assets/WEB-Logo STI_Agro_Trade.svg')"></span>
           <div
             class="navigation__pin-btn"
             @click="pinNavigation"
           > <v-icon dark> mdi-menu </v-icon> </div>
         </div>
 
-        
+        <div class="divider"></div>
 
-        <v-divider></v-divider>
+        <!-- <v-divider></v-divider> -->
 
         <!-- <nav class="menu">
           <ul class="menu__list"
@@ -35,7 +35,35 @@
         <div class="navigation__content">
           <div class="content__list mt-2">
             <v-list color="#3B3B3B" dark subheader max-height="100%">
-              <v-list-item
+              <v-list-item link @click = "selectMenu('Главная')">
+                <v-list-item-icon> <img :src="require('./assets/menu-icons/home.svg')"> </v-list-item-icon>
+                <v-list-item-title> Главная </v-list-item-title>
+              </v-list-item>
+              <v-list-item link @click = "selectMenu('Торги')">
+                <v-list-item-icon> <img :src="require('./assets/menu-icons/auction.svg')"> </v-list-item-icon>
+                <v-list-item-title> Торги </v-list-item-title>
+              </v-list-item>
+              <v-list-item link @click = "selectMenu('Пользователи')">
+                <v-list-item-icon> <img :src="require('./assets/menu-icons/multiple-users-silhouette.svg')"> </v-list-item-icon>
+                <v-list-item-title> Пользователи </v-list-item-title>
+              </v-list-item>
+              <v-list-item link @click = "selectMenu('Обращения')">
+                <v-list-item-icon> <img :src="require('./assets/menu-icons/email.svg')"> </v-list-item-icon>
+                <v-list-item-title> Обращения </v-list-item-title>
+              </v-list-item>
+              <v-list-item link @click = "selectMenu('Статистика')">
+                <v-list-item-icon> <img :src="require('./assets/menu-icons/bar-chart.svg')"> </v-list-item-icon>
+                <v-list-item-title> Статистика </v-list-item-title>
+              </v-list-item>
+              <v-list-item link @click = "selectMenu('Документы')">
+                <v-list-item-icon> <img :src="require('./assets/menu-icons/documents-folder.svg')"> </v-list-item-icon>
+                <v-list-item-title> Документы </v-list-item-title>
+              </v-list-item>
+              <v-list-item link @click = "selectMenu('Новости')">
+                <v-list-item-icon> <img :src="require('./assets/menu-icons/megaphone.svg')"> </v-list-item-icon>
+                <v-list-item-title> Новости </v-list-item-title>
+              </v-list-item>
+              <!-- <v-list-item
                 class="navigation__content-item"
                 :class="[selectedMenu === item.title ? 'navigation__content-item--active' : '']"
                 v-for="item in items"
@@ -45,13 +73,13 @@
               >
                 <v-list-item-icon> <v-icon> {{item.icon}} </v-icon> </v-list-item-icon>
                 <v-list-item-title> {{item.title}} </v-list-item-title>
-              </v-list-item>
+              </v-list-item> -->
             </v-list>
           </div>
           <div>
             <v-list color="#3B3B3B" dark>
               <v-list-item link>
-                <v-list-item-icon> <v-icon> mdi-help </v-icon> </v-list-item-icon>
+                <v-list-item-icon> <img :src="require('./assets/menu-icons/question.svg')"> </v-list-item-icon>
                 <v-list-item-title>Помощь</v-list-item-title>
               </v-list-item>
             </v-list>
@@ -133,6 +161,12 @@ export default {
 </script>
 
 <style scoped>
+.divider {
+  height: 1px;
+  width: 95%;
+  margin: 0px 7px 0px 7px;
+  background-color: white;
+}
 /* new list styles */
 .menu {
   text-decoration: none;
@@ -224,7 +258,7 @@ ul {
 .navigation__pin-btn:hover {
   color: #3B3B3B;
 }
-.helpBlock {
+/* .helpBlock { */
   /* margin-top: calc(100vh - 52.5vh); */
-}
+/* } */
 </style>
