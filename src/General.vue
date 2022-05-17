@@ -4,7 +4,7 @@
       v-if="selectedMenu === 'Главная'"
     />
     <Auctions 
-      v-if="selectedMenu === 'Торги'"
+      v-if="selectedMenu === 'Все торги'"
     />
   </div>
 </template>

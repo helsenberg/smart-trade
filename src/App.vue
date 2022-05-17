@@ -34,35 +34,69 @@
         
         <div class="navigation__content">
           <div class="content__list mt-2">
-            <v-list color="#3B3B3B" dark subheader max-height="100%">
-              <v-list-item link @click = "selectMenu('Главная')">
+            <v-list color="#3B3B3B" dark subheader
+              active-class
+            >
+
+              <v-list-item link @click = "selectMenu('Главная')" class="menu-item" :class="[ selectedMenu === 'Главная' ? 'selected-menu' : '' ]">
                 <v-list-item-icon> <img :src="require('./assets/menu-icons/home.svg')"> </v-list-item-icon>
                 <v-list-item-title> Главная </v-list-item-title>
               </v-list-item>
-              <v-list-item link @click = "selectMenu('Торги')">
-                <v-list-item-icon> <img :src="require('./assets/menu-icons/auction.svg')"> </v-list-item-icon>
-                <v-list-item-title> Торги </v-list-item-title>
-              </v-list-item>
-              <v-list-item link @click = "selectMenu('Пользователи')">
+
+              <v-list-group
+                class="menu-item"
+                no-action
+                dark
+                color="#f0f0f0"
+                :class="[ selectedMenu === 'Все торги' || selectedMenu === 'Мои лоты' || selectedMenu === 'Актуальные лоты' || selectedMenu === 'Избранное' || selectedMenu === 'Архив' ? 'selected-menu' : '' ]"
+              >
+                <template v-slot:activator :class="[ selectedMenu === 'Все торги' ? 'selected-menu' : '' ]">
+                  <v-list-item-icon> <img :src="require('./assets/menu-icons/auction.svg')"> </v-list-item-icon>
+                  <v-list-item-title> Торги </v-list-item-title>
+                </template>
+
+                <v-list-item link @click = "selectMenu('Все торги')" class="menu-item" :class="[ selectedMenu === 'Все торги' ? 'selected-menu__grouped' : '' ]">
+                  <v-list-item-title> Все торги </v-list-item-title>
+                </v-list-item>
+                <v-list-item link @click = "selectMenu('Мои лоты')" class="menu-item" :class="[ selectedMenu === 'Мои лоты' ? 'selected-menu__grouped' : '' ]">
+                  <v-list-item-title> Мои лоты </v-list-item-title>
+                </v-list-item>
+                <v-list-item link @click = "selectMenu('Актуальные лоты')" class="menu-item" :class="[ selectedMenu === 'Актуальные лоты' ? 'selected-menu__grouped' : '' ]">
+                  <v-list-item-title> Актуальные лоты </v-list-item-title>
+                </v-list-item>
+                <v-list-item link @click = "selectMenu('Избранное')" class="menu-item" :class="[ selectedMenu === 'Избранное' ? 'selected-menu__grouped' : '' ]">
+                  <v-list-item-title> Избранное </v-list-item-title>
+                </v-list-item>
+                <v-list-item link @click = "selectMenu('Архив')" class="menu-item" :class="[ selectedMenu === 'Архив' ? 'selected-menu__grouped' : '' ]">
+                  <v-list-item-title> Архив </v-list-item-title>
+                </v-list-item>
+              </v-list-group>
+
+              <v-list-item link @click = "selectMenu('Пользователи')" class="menu-item" :class="[ selectedMenu === 'Пользователи' ? 'selected-menu' : '' ]">
                 <v-list-item-icon> <img :src="require('./assets/menu-icons/multiple-users-silhouette.svg')"> </v-list-item-icon>
                 <v-list-item-title> Пользователи </v-list-item-title>
               </v-list-item>
-              <v-list-item link @click = "selectMenu('Обращения')">
+
+              <v-list-item link @click = "selectMenu('Обращения')" class="menu-item" :class="[ selectedMenu === 'Обращения' ? 'selected-menu' : '' ]">
                 <v-list-item-icon> <img :src="require('./assets/menu-icons/email.svg')"> </v-list-item-icon>
                 <v-list-item-title> Обращения </v-list-item-title>
               </v-list-item>
-              <v-list-item link @click = "selectMenu('Статистика')">
+
+              <v-list-item link @click = "selectMenu('Статистика')" class="menu-item" :class="[ selectedMenu === 'Статистика' ? 'selected-menu' : '' ]">
                 <v-list-item-icon> <img :src="require('./assets/menu-icons/bar-chart.svg')"> </v-list-item-icon>
                 <v-list-item-title> Статистика </v-list-item-title>
               </v-list-item>
-              <v-list-item link @click = "selectMenu('Документы')">
+
+              <v-list-item link @click = "selectMenu('Документы')" class="menu-item" :class="[ selectedMenu === 'Документы' ? 'selected-menu' : '' ]">
                 <v-list-item-icon> <img :src="require('./assets/menu-icons/documents-folder.svg')"> </v-list-item-icon>
                 <v-list-item-title> Документы </v-list-item-title>
               </v-list-item>
-              <v-list-item link @click = "selectMenu('Новости')">
+
+              <v-list-item link @click = "selectMenu('Новости')" class="menu-item" :class="[ selectedMenu === 'Новости' ? 'selected-menu' : '' ]"> 
                 <v-list-item-icon> <img :src="require('./assets/menu-icons/megaphone.svg')"> </v-list-item-icon>
                 <v-list-item-title> Новости </v-list-item-title>
               </v-list-item>
+
               <!-- <v-list-item
                 class="navigation__content-item"
                 :class="[selectedMenu === item.title ? 'navigation__content-item--active' : '']"
@@ -177,6 +211,9 @@ ul {
 .menu li {
   list-style: none;
 }
+.menu-item {
+  margin-top: 5px;
+}
 .menu__content {
   /* display: flex;
   column-gap: 30px;
@@ -186,6 +223,14 @@ ul {
   row-gap: 10px;
 }
 
+.selected-menu {
+  background-color: #6c6c6c !important;
+  border-radius: 10px !important;
+}
+.selected-menu__grouped {
+  background-color: #919191 !important;
+  border-radius: 10px !important;
+}
 
 * {
   margin: 0;
@@ -215,7 +260,6 @@ ul {
   grid-template-columns: 252px calc(100vw - 252px);
 }
 .app__navigation {
-
   position: absolute;
   z-index: 1;
   height: 100%;
