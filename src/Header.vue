@@ -12,8 +12,7 @@
     </div>
 
    <div>Техподдержка по РФ</div>
-
-   <div>Иконки</div>
+   <v-icon @click="goToLogin" dark>mdi-exit-to-app</v-icon>
  </div>
 </template>
 
@@ -41,6 +40,7 @@ window.onload = function() {
 
 export default ({
   data: () => ({
+    loginState: false,
     dayOfTheWeek: days[today.getDay()],
     date: { 
       year: '',
@@ -58,6 +58,13 @@ export default ({
         this.date.month = this.addLeadingZero(today.getMonth()+1);
         this.date.day = this.addLeadingZero(today.getDate());
     },
+    goToLogin() {
+      this.loginState = true
+      this.transferData()
+    },
+    transferData() {
+      this.$emit("authState", this.loginState)
+    }
   },
   mounted() {
     this.getUserTime()

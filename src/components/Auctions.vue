@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-block">
 
     <h2 v-if="selectedCategory === ''">
       Категории
